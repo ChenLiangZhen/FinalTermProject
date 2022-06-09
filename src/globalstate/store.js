@@ -20,4 +20,5 @@ export const store = configureStore({
 
 });
 
-persistStore(store);
+const tt = persistStore(store);
+// tt.purge()

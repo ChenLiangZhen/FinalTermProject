@@ -1,15 +1,22 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
 export const initialState = {
+    misc: {
+        initialStartup: true,
+        darkTheme: false
+    },
     info: {
+        nickname: "",
         email: "",
         password: "",
-        accountName: ""
+        userLink: ""
     },
-    personalization: {
-        interestedCategory: [false,false,false,false,false,false,false,false,false,false,false,false]
-    }
-
+    data: {
+        markedNotes: {},
+        bookmarkedNotes: [],
+        sharedNotes: [],
+        notes: []
+    },
 }
 
 const accountSlice = createSlice({
@@ -17,22 +24,25 @@ const accountSlice = createSlice({
     name: 'account',
     initialState,
     reducers: {
-        // increment(state) {
-        //     state = action.payload
-        // },
-        // decrement(state) {
-        //     state.value--
-        // },
+
         setAccountInfo(state, action) {
             state.info = action.payload
         },
 
-        setInterestedCategory(state, action) {
-            state.personalization.interestedCategory = action.payload
+        setData(state, action) {
+            state.data = action.payload
+        },
+
+        setInitialStartup(state, action) {
+            state.misc.initialStartup = action.payload
+        },
+
+        setDarkTheme(state, action) {
+            state.misc.darkTheme = action.payload
         }
     },
 })
 
 export const selectAccount = (state) => state.account
-export const { setAccountInfo, setInterestedCategory } = accountSlice.actions
+export const { setAccountInfo, setData, setDarkTheme } = accountSlice.actions
 export default accountSlice.reducer
